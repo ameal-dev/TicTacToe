@@ -5,19 +5,19 @@ const Board = () => {
 	return (
 		<div className='w-[600px] h-[600px] border-white border flex flex-col m-auto'>
 			<Row>
-				<Square square={1} />
-				<Square square={2} />
-				<Square square={3} />
+				<Square row={0} square={0} />
+				<Square row={0} square={1} />
+				<Square row={0} square={2} />
 			</Row>
 			<Row>
-				<Square square={4} />
-				<Square square={5} />
-				<Square square={6} />
+				<Square row={1} square={3} />
+				<Square row={1} square={4} />
+				<Square row={1} square={5} />
 			</Row>
 			<Row>
-				<Square square={7} />
-				<Square square={8} />
-				<Square square={9} />
+				<Square row={2} square={6} />
+				<Square row={2} square={7} />
+				<Square row={2} square={8} />
 			</Row>
 		</div>
 	);
