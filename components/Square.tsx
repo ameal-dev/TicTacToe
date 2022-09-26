@@ -5,15 +5,16 @@ import { markSquare } from "../store/gameSlice";
 
 const Square: React.FC<{ square: number; row: number }> = ({ square }) => {
 	const dispatch = useDispatch();
-	// const firstPlayersTurn = useSelector(
-	// 	(state: RootState) => state.game.firstPlayer
-	// );
 
 	const squareMark = useSelector(
 		(state: RootState) => state.game.board[square]
 	);
+	const gameOver = useSelector((state: RootState) => state.game.gameOver);
+
 	const handleUserClick = () => {
-		dispatch(markSquare({ square }));
+		if (!gameOver) {
+			dispatch(markSquare({ square }));
+		}
 	};
 
 	return (

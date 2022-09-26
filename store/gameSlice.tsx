@@ -4,12 +4,16 @@ export interface GameState {
 	board: string[];
 	gameOver: boolean;
 	firstPlayer: boolean;
+	firstPlayerPoints: number;
+	secondPlayerPoints: number;
 }
 
 const initalGameState = {
 	board: new Array(9).fill(""),
 	gameOver: false,
 	firstPlayer: true,
+	firstPlayerPoints: 0,
+	secondPlayerPoints: 0,
 } as GameState;
 
 const isGameOver = (board: string[]) => {
@@ -59,22 +63,27 @@ const gameSlice = createSlice({
 			const playerTurn = state.firstPlayer;
 			const validSquare = state.board[square] === "";
 			if (validSquare) {
+				//update state/board based on player marking the square
 				if (playerTurn) {
 					state.board[square] = "O";
 				} else {
 					state.board[square] = "X";
 				}
+				//announce game over if a player wins as a result
 				if (isGameOver(state.board)) {
+					state.gameOver = true;
+					playerTurn ? state.firstPlayerPoints++ : state.secondPlayerPoints++;
 					console.log(
 						`Game Over! ${playerTurn ? "First Player" : "Second Player"} Wins!`
 					);
 				} else {
+					//otherwise change playerTurn
 					state.firstPlayer = !playerTurn;
 				}
 			}
-			//update state/board based on player marking the square
-			//announce game over if a player wins as a result
-			//otherwise change playerTurn
+		},
+		resetBoard(state) {
+			state.board.fill("");
 		},
 	},
 });
