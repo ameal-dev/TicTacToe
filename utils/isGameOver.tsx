@@ -10,8 +10,8 @@ export const isGameOver = (board: string[]) => {
 	const topLeftBottomRight = board[0] + board[4] + board[8];
 	const topRightBottomLeft = board[2] + board[4] + board[6];
 
-	const winConArry = [];
-	winConArry.push(
+	const winConditionArry = [];
+	winConditionArry.push(
 		firstRow,
 		secondRow,
 		thirdRow,
@@ -21,8 +21,8 @@ export const isGameOver = (board: string[]) => {
 		topLeftBottomRight,
 		topRightBottomLeft
 	);
-
-	const winConversion = [
+	//! winningSquares sub-arrays match the index of winCondtionArry
+	const winningSquaresArry = [
 		[0, 1, 2],
 		[3, 4, 5],
 		[6, 7, 8],
@@ -34,10 +34,10 @@ export const isGameOver = (board: string[]) => {
 	];
 
 	let winningSquares;
-	winConArry.forEach((row, idx) => {
+	winConditionArry.forEach((row, idx) => {
 		if (row === "XXX" || row === "OOO") {
 			isGameOver = true;
-			winningSquares = winConversion[idx];
+			winningSquares = winningSquaresArry[idx];
 		}
 	});
 
