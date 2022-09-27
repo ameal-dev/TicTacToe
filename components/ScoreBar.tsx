@@ -12,7 +12,7 @@ const ScoreBar = () => {
 		(state: RootState) => state.game.firstPlayer
 	);
 
-	const isGameOver = useSelector((state: RootState) => state.game.gameOver);
+	const isGameOver = useSelector((state: RootState) => state.game.isGameOver);
 
 	return (
 		<div className='w-screen h-28 border-white border bg-black flex'>
@@ -24,7 +24,7 @@ const ScoreBar = () => {
 				<p className='text-2xl'>PLAYER TURN:</p>
 				<h1
 					className={`text-3xl font-bold tracking-wider ${
-						isGameOver && "animate-bounce    "
+						isGameOver && "animate-bounce text-red-400"
 					}`}
 				>
 					{!isGameOver

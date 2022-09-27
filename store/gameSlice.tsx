@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 interface GameState {
 	board: string[];
-	gameOver: boolean;
+	isGameOver: boolean;
 	firstPlayer: boolean;
 	firstPlayerPoints: number;
 	secondPlayerPoints: number;
@@ -11,7 +11,7 @@ interface GameState {
 
 const initalGameState = {
 	board: new Array(9).fill(""),
-	gameOver: false,
+	isGameOver: false,
 	firstPlayer: true,
 	firstPlayerPoints: 0,
 	secondPlayerPoints: 0,
@@ -19,7 +19,7 @@ const initalGameState = {
 } as GameState;
 
 const isGameOver = (board: string[]) => {
-	let gameOver = false;
+	let isGameOver = false;
 	//! Win conditions
 	const firstRow = board[0] + board[1] + board[2];
 	const secondRow = board[3] + board[4] + board[5];
@@ -56,13 +56,15 @@ const isGameOver = (board: string[]) => {
 	let winningSquares;
 	winConArry.forEach((row, idx) => {
 		if (row === "XXX" || row === "OOO") {
-			gameOver = true;
+			isGameOver = true;
 			winningSquares = winConversion[idx];
 			console.log(winConversion[idx]);
 		}
 	});
 
-	return { gameOver, winningSquares };
+	console.log(winConArry, winConversion);
+
+	return { isGameOver, winningSquares };
 };
 
 const gameSlice = createSlice({
@@ -81,8 +83,8 @@ const gameSlice = createSlice({
 					state.board[square] = "X";
 				}
 				//!announce game over if a player wins as a result
-				if (isGameOver(state.board).gameOver) {
-					state.gameOver = true;
+				if (isGameOver(state.board).isGameOver) {
+					state.isGameOver = true;
 					state.winIdx = isGameOver(state.board).winningSquares;
 					console.log(state.winIdx);
 					playerTurn ? state.firstPlayerPoints++ : state.secondPlayerPoints++;
@@ -97,9 +99,11 @@ const gameSlice = createSlice({
 		},
 		resetBoard(state) {
 			state.board.fill("");
+			state.isGameOver = false;
+			state.winIdx = undefined;
 		},
 	},
 });
 
 export const gameSliceReducer = gameSlice.reducer;
-export const { markSquare } = gameSlice.actions;
+export const { markSquare, resetBoard } = gameSlice.actions;

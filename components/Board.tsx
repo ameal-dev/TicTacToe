@@ -3,7 +3,7 @@ import Square from "./Square";
 
 const Board = () => {
 	return (
-		<div className='w-[600px] h-[600px] border-white border flex flex-col m-auto'>
+		<div className='w-[600px] h-[600px] border-white border flex flex-col m-auto mt-30'>
 			<Row>
 				<Square row={0} square={0} />
 				<Square row={0} square={1} />
