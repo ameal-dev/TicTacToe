@@ -58,11 +58,8 @@ const isGameOver = (board: string[]) => {
 		if (row === "XXX" || row === "OOO") {
 			isGameOver = true;
 			winningSquares = winConversion[idx];
-			console.log(winConversion[idx]);
 		}
 	});
-
-	console.log(winConArry, winConversion);
 
 	return { isGameOver, winningSquares };
 };
@@ -86,11 +83,7 @@ const gameSlice = createSlice({
 				if (isGameOver(state.board).isGameOver) {
 					state.isGameOver = true;
 					state.winIdx = isGameOver(state.board).winningSquares;
-					console.log(state.winIdx);
 					playerTurn ? state.firstPlayerPoints++ : state.secondPlayerPoints++;
-					console.log(
-						`Game Over! ${playerTurn ? "First Player" : "Second Player"} Wins!`
-					);
 				} else {
 					//!otherwise change playerTurn
 					state.firstPlayer = !playerTurn;

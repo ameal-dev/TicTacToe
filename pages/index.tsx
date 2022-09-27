@@ -17,7 +17,7 @@ const Home: NextPage = () => {
 			<ScoreBar />
 			{isGameOver && (
 				<button
-					className='px-6 py-2 border border-white rounded-xl bg-black text-white text-xl font-bold w-48 mt-[140px] absolute animate-in fade-in zoom-in duration-400'
+					className='px-4 py-2 border-4 border-white rounded-xl bg-black text-white text-xl font-bold w-40 mt-[140px] absolute animate-in fade-in zoom-in duration-400'
 					onClick={handleClickNewGame}
 				>
 					NEW GAME
