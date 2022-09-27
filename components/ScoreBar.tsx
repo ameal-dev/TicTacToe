@@ -20,9 +20,13 @@ const ScoreBar = () => {
 				<h1 className='text-xl'>Player 1</h1>
 				<h1 className='text-5xl'>{playerOneScore}</h1>
 			</div>
-			<div className='flex-1 bg-black text-white border border-white flex justify-center items-center flex-col gap-2'>
+			<div className='flex-1 bg-black text-white border border-white flex justify-center items-center flex-col gap-2 tracking-wide'>
 				<p className='text-2xl'>PLAYER TURN:</p>
-				<h1 className={`text-3xl ${isGameOver && "animate-bounce    "}`}>
+				<h1
+					className={`text-3xl font-bold tracking-wider ${
+						isGameOver && "animate-bounce    "
+					}`}
+				>
 					{!isGameOver
 						? firstPlayerTurn
 							? "PLAYER 1"
