@@ -1,6 +1,6 @@
 # TicTacToe
 
-TicTacToe built with Next.js + TypeScript + TailwindCSS and using Redux for state management.
+TicTacToe built with Next.js + TypeScript + TailwindCSS and using Redux for state management. Made according to "TicTacToe_Wireframe.png" in root directory.
 
 ## Installation
 
