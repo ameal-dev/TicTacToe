@@ -1,21 +1,26 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/index";
-import { markSquare } from "../store/gameSlice";
+import {
+	selectGameState,
+	selectWinningRow,
+	selectIsGameOver,
+	selectTileIsValid, selectTile, selectIsWinningTile
+} from "../store/gameSlice/gameSelectors";
+import {thunkHandleUserMarkSquare} from "../store/gameSlice/gameThunks";
 
-const Square: React.FC<{ square: number; row: number }> = ({ square }) => {
+const Square: React.FC<{ square: number }> = ({ square }) => {
 	const dispatch = useDispatch();
 
-	const playerMark = useSelector(
-		(state: RootState) => state.game.board[square]
-	);
-	const isGameOver = useSelector((state: RootState) => state.game.isGameOver);
-	const winningSquares = useSelector((state: RootState) => state.game.winIdx);
-	const isSquareBouncy = winningSquares?.includes(square);
+	const isGameOver = useSelector(selectWinningRow);
+	const playerMark = useSelector((state: RootState) => selectTile(state, square));
+	const isValid = useSelector((state: RootState) => selectTileIsValid(state, square));
+	const isSquareBouncy = useSelector((state: RootState) => selectIsWinningTile(state, square));
 
 	const handleUserMarkSquare = () => {
-		if (!isGameOver) {
-			dispatch(markSquare({ square }));
+		if (!isGameOver && isValid) {
+			// @ts-ignore
+			dispatch(thunkHandleUserMarkSquare(square));
 		}
 	};
 
