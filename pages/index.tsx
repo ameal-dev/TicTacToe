@@ -4,9 +4,10 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store/index";
 import ScoreBar from "../components/ScoreBar";
 import NewGameButton from "../components/NewGameButton";
+import {selectIsGameOver} from "../store/gameSlice/gameSelectors";
 
 const Home: NextPage = () => {
-	const isGameOver = useSelector((state: RootState) => state.game.isGameOver);
+	const isGameOver = useSelector((state: RootState) => selectIsGameOver(state));
 
 	return (
 		<div className='bg-black h-screen w-screen flex flex-col items-center relative'>

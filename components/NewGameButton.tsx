@@ -1,11 +1,9 @@
 import { useDispatch } from "react-redux";
-import { resetBoard } from "../store/gameSlice";
+import { actionResetBoard } from "../store/gameSlice/gameSlice";
 
 const NewGameButton = () => {
 	const dispatch = useDispatch();
-	const handleClickNewGame = () => {
-		dispatch(resetBoard());
-	};
+	const handleClickNewGame = () => dispatch(actionResetBoard());
 
 	return (
 		<button

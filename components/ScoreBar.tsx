@@ -1,18 +1,12 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../store/index";
+import {selectIsFirstPlayersTurn, selectIsGameOver, selectPlayerPoints} from "../store/gameSlice/gameSelectors";
 
 const ScoreBar = () => {
-	const playerOneScore = useSelector(
-		(state: RootState) => state.game.firstPlayerPoints
-	);
-	const playerTwoScore = useSelector(
-		(state: RootState) => state.game.secondPlayerPoints
-	);
-	const firstPlayerTurn = useSelector(
-		(state: RootState) => state.game.firstPlayer
-	);
-
-	const isGameOver = useSelector((state: RootState) => state.game.isGameOver);
+	const playerOneScore = useSelector((state: RootState) => selectPlayerPoints(state, 0));
+	const playerTwoScore = useSelector((state: RootState) => selectPlayerPoints(state, 1));
+	const firstPlayerTurn = useSelector((state: RootState) => selectIsFirstPlayersTurn(state));
+	const isGameOver = useSelector((state: RootState) => selectIsGameOver(state));
 
 	return (
 		<div className='w-screen h-28 border-white border bg-black flex'>

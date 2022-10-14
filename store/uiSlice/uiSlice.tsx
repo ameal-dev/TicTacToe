@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import {UI} from "../../constans";
 
 export interface MyUiState {
 	firstPlayerPoints: number;
@@ -11,7 +12,7 @@ const initialUiState = {
 } as MyUiState;
 
 const uiSlice = createSlice({
-	name: "ui",
+	name: UI,
 	initialState: initialUiState,
 	reducers: {
 		updateScore(state, action) {},
